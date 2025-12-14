@@ -21,12 +21,14 @@ class MinMaxQueue {
             queue.addLast(element);
             
             // For minimum deque: pop elements from back until the element at back is greater than current
+            // ensures that minQueue remains sorted in increasing order
             while (!minQueue.isEmpty() && minQueue.peekLast() > element) {
                 minQueue.removeLast();
             }
             minQueue.addLast(element);
             
             // For maximum deque: pop elements from back until the element at back is smaller than current
+            // keeps maxQueue sorted in decreasing order
             while (!maxQueue.isEmpty() && maxQueue.peekLast() < element) {
                 maxQueue.removeLast();
             }
