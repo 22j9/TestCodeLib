@@ -23,6 +23,7 @@ class PalindromeStream {
         // Extend base powers if needed
         if (length >= basePowers.size()) {
             long lastPower = basePowers.get(basePowers.size() - 1);
+            // which is basically prev*31
             basePowers.add((lastPower * BASE) % MOD);
         }
         // Update forward hash: add new character at the end
