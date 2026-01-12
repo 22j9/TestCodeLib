@@ -29,6 +29,7 @@ class StockTracker {
             return cachedRankedStocks;
         }
         List<List<String>> rankedTrades = new ArrayList<>();
+        // treeSet -> output list
         for (String stock : sortedStocks) {
             List<String> stockInfo = new ArrayList<>();
             stockInfo.add(stock);
