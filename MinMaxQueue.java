@@ -5,7 +5,7 @@ class MinMaxQueue {
     private Deque<Integer> queue;
     private Deque<Integer> minQueue;
     private Deque<Integer> maxQueue;
-
+    // Time O(1) Space O(n)
     public MinMaxQueue() {
         queue = new ArrayDeque<>();
         minQueue = new ArrayDeque<>();
@@ -20,14 +20,14 @@ class MinMaxQueue {
         } else {
             queue.addLast(element);
             
-            // For minimum deque: pop elements from back until the element at back is greater than current
+            // For minimum deque: remove all elements from the back of minQueue that are greater than val.
             // ensures that minQueue remains sorted in increasing order
             while (!minQueue.isEmpty() && minQueue.peekLast() > element) {
                 minQueue.removeLast();
             }
             minQueue.addLast(element);
             
-            // For maximum deque: pop elements from back until the element at back is smaller than current
+            // For maximum deque: remove all elements from the back of maxQueue that are less than val
             // keeps maxQueue sorted in decreasing order
             while (!maxQueue.isEmpty() && maxQueue.peekLast() < element) {
                 maxQueue.removeLast();
@@ -38,17 +38,14 @@ class MinMaxQueue {
 
     public int dequeue() {
         int removed = queue.peekFirst();
-        
         queue.removeFirst();
-        
+        // val also in front, remove corresponding min/max
         if (!minQueue.isEmpty() && removed == minQueue.peekFirst()) {
             minQueue.removeFirst();
         }
-        
         if (!maxQueue.isEmpty() && removed == maxQueue.peekFirst()) {
             maxQueue.removeFirst();
         }
-        
         return removed;
     }
 
